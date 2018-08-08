@@ -1,7 +1,11 @@
+const { servePublicFile } = require('./handler');
+const path = require('path');
+
 const router = (req, res) => {
   if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end();
+    servePublicFile(res, 'index.html');
+  } else {
+    servePublicFile(res, req.url);
   }
 };
 
