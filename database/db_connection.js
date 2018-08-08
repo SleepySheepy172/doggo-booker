@@ -23,4 +23,4 @@ const options = {
 
 
 // new instance of Pool taking in values from the option object
-module.exports = new Pool(options)
+module.exports = new Pool(options);
