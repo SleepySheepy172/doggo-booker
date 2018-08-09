@@ -4,6 +4,7 @@ BEGIN;
 
 -- remove the database to save the updated version
 DROP TABLE IF EXISTS bookings CASCADE;
+DROP TABLE IF EXISTS bookings_id_seq CASCADE;
 
 -- create table BOOKINGS
 CREATE TABLE bookings (
