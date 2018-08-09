@@ -37,7 +37,7 @@ tape('test getBookings can handle errors', (t) => {
 tape('test createBooking function', (t) => {
   runDbBuild((err, res) => {
     t.equals(err, null, "error is not triggered");
-    createBooking('Martin', '07346598732', '2018-08-11T14:46:57.417Z', '2018-08-11T15:47:55.129Z', (err, data) => {
+    createBooking('Martin', '07346598732', '2018-08-11T14:46:57.417Z', '2018-08-11T15:47:55.129Z', true, (err, data) => {
       t.equals(err, null, "error is not triggered when creating booking");
       t.equals(data.command, 'INSERT', "this will be INSERTed");
       t.equals(data.rowCount, 1, "one row added");
@@ -49,7 +49,7 @@ tape('test createBooking function', (t) => {
 tape('check createBooking handles errors', (t) => {
   runDbBuild((err, res) => {
     t.equals(err, null, "error is not triggered");
-    createBooking('Dave', '07346598732', 'SNOOPY', 'MUTTLEY', (err, data) => {
+    createBooking('Dave', '07346598732', 'SNOOPY', 'MUTTLEY', true, (err, data) => {
       t.equals(err === null, false, "callback is run on error when timestamps are invalid");
     })
     t.end();
