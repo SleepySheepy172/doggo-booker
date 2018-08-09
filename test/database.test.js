@@ -1,5 +1,5 @@
 const tape = require('tape');
-const runDbBuild = require('../database/db_build.js');
+const runDbBuild = require('../src/database/db_build.js');
 
 tape("tape for database is working", t => {
   t.equals(1, 1, "one equals one");
@@ -12,3 +12,5 @@ tape('test that no error when making database', (t) => {
     t.end();
   });
 });
+
+
