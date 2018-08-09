@@ -16,6 +16,20 @@ tape('testing home route', (t) => {
     });
 });
 
+tape('testing about route', (t) => {
+  supertest(router)
+    .get('/about')
+    .expect(200)
+    .expect('Content-Type', /html/)
+    .end((err, res) => {
+      t.error(err, 'supertests');
+      t.equal(res.statusCode, 200, 'Should return 200');
+      t.equal(res.text.includes('<html lang="en">') && res.text.includes('</html>'),
+        true, 'response includes HTML opening and closing tags');
+      t.end();
+    });
+});
+
 tape('testing 404', (t) => {
   supertest(router)
     .get('/ksjgls')
