@@ -19,7 +19,7 @@ CREATE TABLE bookings (
   -- set data type for the end time
   end_time TIMESTAMP NOT NULL DEFAULT now(),
   -- set data type for the
-  booking BOOL NOT NULL
+  booking BOOL DEFAULT true NOT NULL
 );
 
 -- insert data into BOOKINGS
