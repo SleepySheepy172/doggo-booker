@@ -5,10 +5,10 @@ const router = (req, res) => {
   if (req.url === '/') {
     servePublicFile(res, 'index.html');
   } 
-  if (req.url === '/about') {
+  else if (req.url === '/about') {
     servePublicFile(res, 'about.html');
   } 
-  if (req.url === '/make-booking') {
+  else if (req.url === '/make-booking') {
     makeBooking(req, res);
   }
   else {
