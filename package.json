@@ -4,6 +4,7 @@
   "description": "An app to reserve times with Mackerel the puppy",
   "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "nyc tape ./test/*.js | tap-spec",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
