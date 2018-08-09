@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "env2": "^2.2.2",
+    "eslint-config-node": "^3.0.0",
+    "eslint-config-prettier": "^2.9.0",
     "pg": "^7.4.3"
   }
 }

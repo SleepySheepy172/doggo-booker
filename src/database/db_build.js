@@ -11,3 +11,12 @@ dbConnection.query(sql, (err, res) => {
   if (err) throw err;
   console.log('table created ', res);
 });
+
+const runDbBuild = cb => {
+  dbConnection.query(sql, (err, res) => {
+    if (err) return cb(err);
+    cb(null, res);
+  });
+};
+
+module.exports = runDbBuild;
