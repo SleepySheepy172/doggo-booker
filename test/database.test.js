@@ -16,7 +16,7 @@ tape('test that no error when making database', (t) => {
     const end = '2018-08-12';
     getBookings(start, end, (err, data) => {
       t.equals(err, null, "error is not triggered when getting data");
-      t.equals(data.length, 2, "function returns 2 rows of data");
+      t.equals(data.length, 6, "function returns 6 rows of data");
     })
     t.end();
   });

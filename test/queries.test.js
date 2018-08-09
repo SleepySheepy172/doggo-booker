@@ -18,18 +18,20 @@ dbBuild((err, res)=>{
       .end((err, res) => {
         t.error(err, 'supertests');
         t.equal(res.statusCode, 200, 'Should return 200 get-availabilty route');
+        console.log(res.text);
         t.end();
       });
   });
 
   tape('testing get-bookings route', (t) => {
     supertest(router)
-    .get('/get-bookings?start=2018-08-09T10:00&end=2018-08-09T18:00')
+    .get('/get-bookings?start=2018-08-010T10:00&end=2018-08-10T18:00')
     .expect(200)
     .expect('content-type', /json/)
     .end((err,res) => {
       t.error(err, 'supertests');
       t.equals(res.statusCode, 200, 'Should retuen 200 for get-booking route');
+      console.log(res.text);
       t.end();
     });
   });
