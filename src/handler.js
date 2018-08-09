@@ -1,10 +1,11 @@
 const fs = require('fs');
 const path = require('path');
+const querystring = require('querystring');
 const getAvailability = require('./queries/getAvailability');
+const getBookings = require('./queries/getBookings');
 
 
 const servePublicFile = (res, filename) => {
-  console.log(filename);
   fs.readFile(path.join(__dirname, '..', 'public', filename), (err, file) => {
     const fileType = path.extname(filename);
     const mimeType = {
@@ -43,6 +44,20 @@ const getAvailabilityRoute = (req, res) => {
   })
 }
 
+const getBookingsRoute = (req, res) => {
+  const query = req.url.split('?')[1];
+  const parsedQuery = querystring.parse(query);
+  getBookings(parsedQuery.start, parsedQuery.end, (err, data) => {
+    if (err) {
+      res.writeHead(500, {'content-type': 'text/plain'});
+      res.end('Error with request');
+    } else {
+      res.writeHead(200, {'content-type': 'application/json'});
+      res.end(JSON.stringify(data));
+    }
+  })
+}
+
 const makeBooking = (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end();
@@ -50,4 +65,4 @@ const makeBooking = (req, res) => {
 
 
 
-module.exports = { servePublicFile, makeBooking, getAvailabilityRoute };
+module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute };
