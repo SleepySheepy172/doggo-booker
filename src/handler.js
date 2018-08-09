@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const getAvailability = require('./queries/getAvailability');
 
 
 const servePublicFile = (res, filename) => {
@@ -22,7 +23,7 @@ const servePublicFile = (res, filename) => {
     if (err) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.end('File not found');
-    // else...
+      // else...
     } else {
       res.writeHead(200, { 'Content-Type': mimeType[fileType] });
       res.end(file);
@@ -30,9 +31,23 @@ const servePublicFile = (res, filename) => {
   });
 };
 
+const getAvailabilityRoute = (req, res) => {
+  getAvailability((err, data) => {
+    if (err) {
+      res.writeHead(500, { 'content-type': 'text/plain' });
+      res.end('Error with request');
+    } else {
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(data));
+    }
+  })
+}
+
 const makeBooking = (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end();
 }
 
-module.exports = { servePublicFile, makeBooking };
+
+
+module.exports = { servePublicFile, makeBooking, getAvailabilityRoute };
