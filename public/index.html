@@ -11,19 +11,28 @@
 
   <main>
     <h1>Book a date with your fave doggo</h1>
-    <section id="avaliable-dates">
-      <div id="date1"><div>
-      <div id="date2"><div>
-      <div id="date3"><div>
+    <section id="available-dates">
+      <button id="date1">date 1</button>
+      <button id="date2">date 2</button>
+      <button id="date3">date 3</button>
     </section>
 
-    <form id="" class="form" action="/create-user" method="post">
-      <input type="text" name="name" value="" placeholder="name">
-      <input type="text" name="contact" value="" placeholder="contact">
-      <input type="date" name="start-time" value="" placeholder="start-time">
-      <input type="date" name="end-time" value="" placeholder="end-time">
+    <section id="intro">
+      <p>Choose a date above to hang out with Mackerel!</p>
+    </section>
+
+    <form class="form" action="/create-user" method="post">
+      <label for="name">Name</label>
+      <input id="name "type="text" name="name" value="" placeholder="name">
+      <label for="contact">Contact details</label>
+      <input id="contact" type="text" name="contact" value="" placeholder="contact">
+      <label for="start-time">Add a start time</label>
+      <input id="start-time" type="date" name="start-time" value="" placeholder="start time">
+      <label for="end-time">Add an end time</label>
+      <input id="end-time" type="date" name="end-time" value="" placeholder="end time">
       <button type="submit" name="button"> Make a date </button>
     </form>
+
   </main>
 
   <script src="js/logic.js"></script>

@@ -25,7 +25,7 @@ CREATE TABLE bookings (
 -- insert data into BOOKINGS
 INSERT INTO bookings (name, contact, start_time, end_time, booking) VALUES
 ('Emma', '07483928644', '2018-08-08T14:46:57.417Z', '2018-08-08T15:47:55.129Z', true),
-('Artemis', '07378498256', '2018-09-08T14:46:57.417Z', '2018-09-08T15:47:55.129Z', false),
-('Nathalie', '07930287364', '2018-11-08T14:46:57.417Z', '2018-11-08T15:47:55.129Z', false);
+('Artemis', '07378498256', '2018-08-09T14:46:57.417Z', '2018-08-09T15:47:55.129Z', false),
+('Nathalie', '07930287364', '2018-08-11T14:46:57.417Z', '2018-08-11T15:47:55.129Z', false);
 
 COMMIT;
