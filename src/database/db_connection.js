@@ -2,7 +2,7 @@
 const { Pool } = require('pg');
 const url = require('url');
 
-const DB_URL = process.env.USER_DB_URL;
+let DB_URL = process.env.USER_DB_URL;
 
 if (!DB_URL) {
   console.log('setting DB_URL from config.env');
