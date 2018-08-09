@@ -30,4 +30,9 @@ const servePublicFile = (res, filename) => {
   });
 };
 
-module.exports = { servePublicFile };
+const makeBooking = (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end();
+}
+
+module.exports = { servePublicFile, makeBooking };
