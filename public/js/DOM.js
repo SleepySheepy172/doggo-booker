@@ -74,7 +74,7 @@ function renderForm(date) {
   removeChildren('booking-form');
   var form = document.createElement('form');
   form.classList.add('form');
-  form.action = '/create-booking';
+  form.action = '/make-booking';
   form.method = 'POST';
   bookingForm.appendChild(form);
   addFormElement(form, 'form-date', 'hidden', 'date', date);

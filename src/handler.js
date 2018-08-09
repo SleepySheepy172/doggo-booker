@@ -3,6 +3,7 @@ const path = require('path');
 const querystring = require('querystring');
 const getAvailability = require('./queries/getAvailability');
 const getBookings = require('./queries/getBookings');
+const createBooking = require('./queries/createBooking');
 
 const servePublicFile = (res, filename) => {
   fs.readFile(path.join(__dirname, '..', 'public', filename), (err, file) => {
@@ -58,8 +59,27 @@ const getBookingsRoute = (req, res) => {
 }
 
 const makeBooking = (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end();
+  let data = '';
+  req.on('data', (chunk) => {
+    data += chunk;
+  })
+  req.on('end', () => {
+    const formData = querystring.parse(data);
+    console.log('form data', formData);
+    const startTime = formData.date + 'T' + formData['start-time'];
+    const endTime = formData.date + 'T' + formData['end-time'];
+    createBooking(formData.name, formData.contact, startTime, endTime, true, (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain'});
+        res.end('Error updating database');
+      } else {
+        res.writeHead(302, { 'Content-Type': 'location', 'Location': '/'});
+        res.end('Success');
+      }
+    })
+
+  })
+
 }
 
 
