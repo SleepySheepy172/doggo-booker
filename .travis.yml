@@ -9,6 +9,6 @@ notifications:
 services:
  - postgresql
 before_script:
-  - psql -c 'CREATE DATABASE doggo_bookings;' -U postgres
+  - psql -c 'CREATE DATABASE doggo_booker;' -U postgres
   - psql -c "CREATE USER mackerel WITH PASSWORD 'flipflop';" -U postgres
-  - psql -c "ALTER DATABASE doggo_bookings OWNER TO mackerel;" -U postgres
+  - psql -c "ALTER DATABASE doggo_booker OWNER TO mackerel;" -U postgres
