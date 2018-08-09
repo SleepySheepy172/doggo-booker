@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-
 const servePublicFile = (res, filename) => {
   console.log(filename);
   fs.readFile(path.join(__dirname, '..', 'public', filename), (err, file) => {
