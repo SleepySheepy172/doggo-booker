@@ -30,6 +30,18 @@ tape('testing about route', (t) => {
     });
 });
 
+tape('testing make-booking endpoint', (t) => {
+  supertest(router)
+    .post('/make-booking')
+    .expect(200)
+    //.expect('Content-Type', /html/)
+    .end((err, res) => {
+      t.error(err, 'supertests');
+      t.equal(res.statusCode, 200, 'Should return 200');
+      t.end();
+    });
+});
+
 tape('testing 404', (t) => {
   supertest(router)
     .get('/ksjgls')
