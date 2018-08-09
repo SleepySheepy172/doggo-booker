@@ -22,10 +22,20 @@ CREATE TABLE bookings (
   booking BOOL DEFAULT true NOT NULL
 );
 
+
+-- insert availability into bookings
+INSERT INTO bookings (name, contact, start_time, end_time, booking) VALUES
+('Michael', '07972767878', '2018-08-10T10:00', '2018-08-10T18:00', false),
+('Michael', '07972767878', '2018-08-12T10:00', '2018-08-10T18:00', false),
+('Michael', '07972767878', '2018-08-14T10:00', '2018-08-10T18:00', false);
+
 -- insert data into BOOKINGS
 INSERT INTO bookings (name, contact, start_time, end_time, booking) VALUES
-('Emma', '07483928644', '2018-08-08T14:46:57.417Z', '2018-08-08T15:47:55.129Z', true),
-('Artemis', '07378498256', '2018-08-09T14:46:57.417Z', '2018-08-09T15:47:55.129Z', false),
-('Nathalie', '07930287364', '2018-08-11T14:46:57.417Z', '2018-08-11T15:47:55.129Z', false);
+('Emma', '07483928644', '2018-08-10T12:00', '2018-08-10T14:00', true),
+('Artemis', '07378498256', '2018-08-10T15:00', '2018-08-10T16:00', true),
+('Nathalie', '07930287364', '2018-08-10T17:00', '2018-08-10T18:00', true),
+('Martin', '07483928644', '2018-08-12T11:00', '2018-08-10T12:00', true),
+('Jessie', '07378498256', '2018-08-12T13:00', '2018-08-10T14:00', true),
+('Joe', '07930287364', '2018-08-12T15:00', '2018-08-10T16:00', true);
 
 COMMIT;
