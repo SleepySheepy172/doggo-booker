@@ -39,19 +39,20 @@ section {
   justify-content: space-around;
 }
 
-button {
+#available-dates > button {
   border-radius: 50%;
   width: 5rem;
   height: 5rem;
   font-family: 'Josefin Sans', sans-serif;
-  color: #331F1F;
+  color: #C9ADA7;
+  background-color: #915434;
   font-size: 35px;
   display: flex;
   justify-content: center;
   border: none;
 }
 
-#booking {
+#bookings {
   margin: 50px;
 }
 
@@ -66,14 +67,14 @@ button {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  width: 50vw;
+  width: 60vw;
 }
 
 #bookings-list > li > ul {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: 50vw;
+  width: 60vw;
 }
 
 #bookings-list > li > ul > li {
@@ -81,4 +82,27 @@ button {
   text-align: center;
   padding: 1rem 0 0.5rem;
   font-size: 22px;
+}
+
+
+
+input {
+  padding:0.5rem;
+  font-size: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#submit {
+  padding: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #331F1F;
+  background-color: #C9ADA7;
+  border-radius: 50%;
+  font-size: 20px;
+  border: none;
+  margin-left: 2rem;
+}
+
+#name, #contact{
+  padding: 0.7rem;
 }
