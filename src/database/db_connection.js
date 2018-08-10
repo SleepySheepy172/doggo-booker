@@ -1,6 +1,5 @@
 // connect to the database
 const { Pool } = require('pg');
-
 const url = require('url');
 
 if (process.env.ENVIRONMENT !== 'PRODUCTION') {
