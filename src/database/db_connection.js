@@ -2,18 +2,15 @@
 const { Pool } = require('pg');
 const url = require('url');
 
-let DB_URL = process.env.USER_DB_URL;
-
-if (!DB_URL) {
+if (process.env.ENVIRONMENT !== 'PRODUCTION') {
   console.log('setting DB_URL from config.env');
   require('env2')('./config.env');
-  DB_URL = process.env.DB_URL;
 }
 
-// check if database url always exists
-if (!DB_URL) throw new Error('Environment variable DB_URL must be set');
+// check if database url is set in environment vars
+if (!process.env.USER_DB_URL) throw new Error('USER_DB_URL environment variable must be set');
 
-const params = url.parse(DB_URL);
+const params = url.parse(process.env.USER_DB_URL);
 const [username, password] = params.auth.split(':');
 
 const options = {

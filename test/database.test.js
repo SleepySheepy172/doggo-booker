@@ -12,11 +12,11 @@ tape("tape for database is working", t => {
 tape('test that no error when making database', (t) => {
   runDbBuild((err, res) => {
     t.equals(err, null, "error is not triggered");
-    const start = '2018-08-09';
-    const end = '2018-08-12';
+    const start = '2018-08-10';
+    const end = '2018-08-11';
     getBookings(start, end, (err, data) => {
       t.equals(err, null, "error is not triggered when getting data");
-      t.equals(data.length, 6, "function returns 6 rows of data");
+      t.equals(data.length, 3, "function returns 3 rows of data");
     })
     t.end();
   });
