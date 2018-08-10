@@ -65,7 +65,6 @@ const makeBooking = (req, res) => {
   })
   req.on('end', () => {
     const formData = querystring.parse(data);
-    console.log('form data', formData);
     const startTime = formData.date + 'T' + formData['start-time'];
     const endTime = formData.date + 'T' + formData['end-time'];
     if (data) {
