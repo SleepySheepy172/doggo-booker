@@ -2,6 +2,7 @@
 const { Pool } = require('pg');
 const url = require('url');
 
+//only load env2 when running in local environment
 if (process.env.ENVIRONMENT !== 'PRODUCTION') {
   console.log('setting DB_URL from config.env');
   require('env2')('./config.env');
