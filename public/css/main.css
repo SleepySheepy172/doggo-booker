@@ -51,8 +51,34 @@ button {
   border: none;
 }
 
+#booking {
+  margin: 50px;
+}
+
 #bookings-list {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 70vw;
+}
+
+#bookings-list > li {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 50vw;
+}
+
+#bookings-list > li > ul {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 50vw;
+}
+
+#bookings-list > li > ul > li {
+  width: 25%;
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+  font-size: 22px;
 }
