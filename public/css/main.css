@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: #F2E9E4;
+  color: #331F1F;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 600;
+  margin: 45px;
+}
+
+h2 {
+  font-size: 35px;
+  margin-bottom: 45px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 30px 0 30px;
+  height: 100%;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+}
+
+#available-dates {
+  display: flex;
+  justify-content: space-around;
+}
