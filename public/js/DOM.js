@@ -74,17 +74,17 @@ function addFormElement(parent, id, type, name, value, placeholder) {
   parent.appendChild(element);
 }
 
-function makeBooking(querystring) {
+function makeBooking(querystring, cb) {
   var XHR = new XMLHttpRequest();
 
   // Define what happens on successful data submission
   XHR.addEventListener('load', function(event) {
-    alert('Yeah! Data sent and response loaded.');
+    cb();
   });
 
   // Define what happens in case of error
   XHR.addEventListener('error', function(event) {
-    alert('Oops! Something went wrong.');
+    console.log('Oops! Something went wrong.');
   });
 
   // Set up our request
@@ -157,7 +157,10 @@ function renderForm(date) {
     var endTime = document.getElementById('end-time').value;
     if (validateForm(name, contact, startTime, endTime)) {
       var data = 'date=' + date + '&name=' + name + '&contact=' + contact + '&start-time=' + startTime + '&end-time=' + endTime;
-      makeBooking(data);
+      makeBooking(data, function(){
+        getBookings(date + 'T10:00:00.000Z', date + 'T18:00:00.000Z');
+      });
+      renderForm(date);      
     }
   });
 }
