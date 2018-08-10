@@ -4,14 +4,14 @@ const url = require('url');
 
 //only load env2 when running in local environment
 if (process.env.ENVIRONMENT !== 'PRODUCTION') {
-  console.log('setting DB_URL from config.env');
+  console.log('setting USERS_DB_URL from config.env');
   require('env2')('./config.env');
 }
 
 // check if database url is set in environment vars
-if (!process.env.USER_DB_URL) throw new Error('USER_DB_URL environment variable must be set');
+if (!process.env.USERS_DB_URL) throw new Error('USERS_DB_URL environment variable must be set');
 
-const params = url.parse(process.env.USER_DB_URL);
+const params = url.parse(process.env.USERS_DB_URL);
 const [username, password] = params.auth.split(':');
 
 const options = {
