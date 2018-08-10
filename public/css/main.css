@@ -38,3 +38,21 @@ section {
   display: flex;
   justify-content: space-around;
 }
+
+button {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #331F1F;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+
+#bookings-list {
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+}
