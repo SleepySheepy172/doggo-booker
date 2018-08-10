@@ -3,7 +3,7 @@
 
 Heroku: https://mackerel-time.herokuapp.com/ (it might work! 🤞🏼)
 
-##Local installation
+## Local installation
 
 * Clone this repo
 * Run npm install
