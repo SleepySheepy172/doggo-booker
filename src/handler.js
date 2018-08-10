@@ -68,16 +68,21 @@ const makeBooking = (req, res) => {
     console.log('form data', formData);
     const startTime = formData.date + 'T' + formData['start-time'];
     const endTime = formData.date + 'T' + formData['end-time'];
-    createBooking(formData.name, formData.contact, startTime, endTime, true, (err, data) => {
-      if (err) {
-        res.writeHead(500, { 'Content-Type': 'text/plain'});
-        res.end('Error updating database');
-      } else {
-        res.writeHead(302, { 'Content-Type': 'location', 'Location': '/'});
-        res.end('Success');
-      }
-    })
-
+    if (data) {
+      createBooking(formData.name, formData.contact, startTime, endTime, true, (err, data) => {
+        if (err) {
+          console.log('error', err);
+          res.writeHead(500, { 'Content-Type': 'text/plain'});
+          return res.end('Error updating database');
+        } else {
+          res.writeHead(302, { 'Content-Type': 'location', 'Location': '/'});
+          return res.end('Success');
+        }
+      })
+    } else {
+      res.writeHead(200, { 'Content-Type': 'text/plain'});
+      return res.end();
+    }
   })
 
 }
