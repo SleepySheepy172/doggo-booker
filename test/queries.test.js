@@ -15,10 +15,11 @@ dbBuild((err, res)=>{
   });
 
   tape('test that no error when making database', (t) => {
-    const start = '2018-08-10';
-    const end = '2018-08-11';
+    const start = '2018-08-21';
+    const end = '2018-08-22';
     getBookings(start, end, (err, data) => {
       t.equals(err, null, "error is not triggered when getting data");
+      console.log('this is data in the test', data.length);
       t.equals(data.length, 3, "function returns 3 rows of data");
     })
     t.end();
