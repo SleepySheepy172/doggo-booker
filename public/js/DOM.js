@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // show available dates on load
 const availableDates = document.getElementById('available-dates');
 // show an intro before use picks a date
@@ -7,7 +9,7 @@ const dateButtons = document.getElementsByTagName('button');
 // hide form until usre has clicked a date
 const inputForm = document.getElementsByTagName('form');
 
-const bookingsList = document.getElementById('bookings-list');
+const bookingsTable = document.getElementById('bookings-table');
 
 const bookingForm = document.getElementById('booking-form');
 
@@ -31,10 +33,19 @@ function removeChildren(id) {
   }
 }
 
-function addListItem(parent, text) {
-  var li = document.createElement('li');
-  li.innerText = text;
-  parent.appendChild(li);
+function addTD(parent, text) {
+  var e = document.createElement('td');
+  e.innerText = text;
+  parent.appendChild(e);
+}
+
+function addTH(parent, text) {
+  var e = document.createElement('th');
+  e.scope = 'col';
+  var h4 = document.createElement('h4');
+  h4.innerText = text;
+  e.appendChild(h4)
+  parent.appendChild(e);
 }
 
 var bookinglist = {};
@@ -43,27 +54,34 @@ function getBookings(start, end) {
   url = '/get-bookings?start=' + start + '&end=' + end;
   request(url, function(err, data){
     if (err) return console.log(err);
-    removeChildren('bookings-list');
+    removeChildren('bookings-table');
     var bookings = JSON.parse(data);
     bookingState = bookings;
     if (bookings.length) {
+      var row = document.createElement('tr');
+      addTH(row, 'Name');
+      addTH(row, 'Start');
+      addTH(row, 'End');
+      bookingsTable.appendChild(row);
     bookings.forEach(function(booking){
-      var item = document.createElement('li');
-      var details = document.createElement('ul');
-      item.appendChild(details);
-      addListItem(details, booking.name);
-      addListItem(details, booking.contact);
-      addListItem(details, booking.start_time);
-      addListItem(details, booking.end_time);
-      bookingsList.appendChild(item);
+      var row = document.createElement('tr');
+      addTD(row, booking.name);
+      //addTD(row, booking.contact);
+      addTD(row, booking.start_time);
+      addTD(row, booking.end_time);
+      bookingsTable.appendChild(row);
       });
     } else {
-      addListItem(bookingsList, 'No bookings found.');
+      var row = document.createElement('tr');
+      addTD(row, 'No bookings found.');
+      bookingsTable.appendChild(row);
     }
   });
 }
 
 function addFormElement(parent, id, type, name, value, placeholder) {
+  var label = document.createElement('label');
+  label.innerText = name;
   var element = document.createElement('input');
   element.type = type;
   element.id = id;
@@ -71,7 +89,8 @@ function addFormElement(parent, id, type, name, value, placeholder) {
   element.value = value;
   element.required = true;
   if (placeholder !== undefined) element.placeholder = placeholder;
-  parent.appendChild(element);
+  label.appendChild(element);
+  parent.appendChild(label);
 }
 
 function makeBooking(querystring, cb) {
@@ -165,6 +184,51 @@ function renderForm(date) {
   });
 }
 
+/* parent, id, type, name, value, placeholder */
+
+function renderRegistration(date) {
+  removeChildren('booking-form');
+  var form = document.createElement('form');
+  form.id = 'login-form'
+  form.classList.add('login-form');
+  form.action = '/login';
+  form.method = 'POST';
+  bookingForm.appendChild(form);
+  //add heading to form
+  var heading = document.createElement('h4');
+  heading.innerText = 'Register to make bookings';
+  form.appendChild(heading);
+  //addFormElement(form, 'form-date', 'hidden', 'date', date);
+  addFormElement(form, 'first-name', 'text', 'First Name', '', 'Snoopy');
+  addFormElement(form, 'last-name', 'text', 'Last Name', '', 'Beagle');
+  addFormElement(form, 'contact', 'number', 'Phone', '', '07654321012');
+  addFormElement(form, 'password', 'password', 'Password', '');
+  addFormElement(form, 'password-2', 'password', 'Confirm Password', '');
+  var submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.name = 'submit';
+  submit.id = 'submit';
+  submit.innerText = 'Submit';
+  form.appendChild(submit);
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
+    var firstName = document.getElementById('first-name').value;
+    var lastName = document.getElementById('last-name').value;
+    var contact = document.getElementById('contact').value;
+    var password = document.getElementById('password-1').value;
+    var password2 = document.getElementById('password-2').value;
+    if (validateRegistration(firstName, lastName, contact, password, password2)) {
+      var data = 'first-name=' + firstName + 'last-name=' + lastName + '&contact=' + contact + '&password=' + password;
+      register(data, function(){
+        //renderForm(date);
+      });  
+    }
+  });
+}
+
+// changed /get-availability request - function needs to return data to show
+// if user is logged in, as well as the days available.
+
 window.addEventListener("load", function (e) {
   console.log('I have loaded')
   // grab data here
@@ -175,7 +239,9 @@ window.addEventListener("load", function (e) {
       var button = document.createElement('button');
       button.addEventListener('click', function(){
         getBookings(day.start_time, day.end_time);
-        renderForm(day.start_time.split('T')[0]);
+        if (data.logged_in === true) {
+          renderForm(day.start_time.split('T')[0]);
+        }
       })
       button.innerText = day.start_time.split('T')[0].split('-')[2];
       availableDates.appendChild(button);
