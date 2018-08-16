@@ -1,4 +1,4 @@
-const { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute } = require('./handler');
+const { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute } = require('./handler');
 const path = require('path');
 
 const router = (req, res) => {
@@ -17,6 +17,8 @@ const router = (req, res) => {
   }
   else if (req.url === '/make-booking') {
     makeBooking(req, res);
+  } else if (req.url === '/register') {
+    registerRoute(req, res);
   }
   else {
     servePublicFile(res, req.url);
