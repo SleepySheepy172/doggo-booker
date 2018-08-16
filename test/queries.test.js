@@ -15,10 +15,11 @@ dbBuild((err, res)=>{
   });
 
   tape('test that no error when making database', (t) => {
-    const start = '2018-08-10';
-    const end = '2018-08-11';
+    const start = '2018-08-21';
+    const end = '2018-08-22';
     getBookings(start, end, (err, data) => {
       t.equals(err, null, "error is not triggered when getting data");
+      console.log('this is data in the test', data.length);
       t.equals(data.length, 3, "function returns 3 rows of data");
     })
     t.end();
@@ -27,14 +28,14 @@ dbBuild((err, res)=>{
 tape('test getBookings can handle errors', (t) => {
     const start = 'BEAGLE';
     const end = 'FOX TERRIER';
-    getBookings(start, end, (err, data) => {
+    getBookings(start, end, (err) => {
       t.equals(err === null, false, "callback handles error when times are invalid");
     })
     t.end();
 })
 
 tape('test createBooking function', (t) => {
-    createBooking('Martin', '07346598732', '2018-08-11T14:46:57.417Z', '2018-08-11T15:47:55.129Z', true, (err, data) => {
+    createBooking(3 , '2018-08-11T14:46:57.417Z', '2018-08-11T15:47:55.129Z', true, (err, data) => {
       t.equals(err, null, "error is not triggered when creating booking");
       t.equals(data.command, 'INSERT', "this will be INSERTed");
       t.equals(data.rowCount, 1, "one row added");
@@ -43,7 +44,7 @@ tape('test createBooking function', (t) => {
 });
 
 tape('check createBooking handles errors', (t) => {
-    createBooking('Dave', '07346598732', 'SNOOPY', 'MUTTLEY', true, (err, data) => {
+    createBooking('Dave', 'SNOOPY', 'MUTTLEY', true, (err, data) => {
       t.equals(err === null, false, "callback is run on error when timestamps are invalid");
     })
     t.end();
