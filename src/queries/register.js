@@ -7,7 +7,11 @@ const register = (email, firstName, lastName, contact, password, cb) => {
       [email, firstName, lastName, contact, hashPassword],
       (err, data) => {
         if (err) return cb(err);
-        cb(null, data);
+        dbConnection.query('SELECT id FROM users WHERE email = $1', [email], (err, result) => {
+          if (err) return cb(err);
+          cb(null, result.rows[0]['id']);
+        })
+        //cb(null, data);
       })
   })
 }

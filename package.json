@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arrested-developer/doggo-booker.git"
+    "url": "git+https://github.com/SleepySheepy172/doggo-booker.git"
   },
   "author": "MMEAN_TEAM",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/arrested-developer/doggo-booker/issues"
+    "url": "https://github.com/SleepySheepy172/doggo-booker/issues"
   },
-  "homepage": "https://github.com/arrested-developer/doggo-booker#readme",
+  "homepage": "https://github.com/SleepySheepy172/doggo-booker#readme",
   "devDependencies": {
     "codecov": "^3.0.4",
     "eslint": "^4.19.1",
@@ -33,9 +33,11 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
+    "cookie": "^0.3.1",
     "env2": "^2.2.2",
     "eslint-config-node": "^3.0.0",
     "eslint-config-prettier": "^2.9.0",
+    "jsonwebtoken": "^8.3.0",
     "pg": "^7.4.3"
   }
 }

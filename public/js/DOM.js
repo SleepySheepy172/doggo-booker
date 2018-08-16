@@ -164,7 +164,7 @@ function validateForm(name, contact, startTime, endTime) {
   return true;
 }
 
-function renderBookingForm(date) {
+function renderBookingForm(date, id) {
   removeChildren('booking-form');
   var form = document.createElement('form');
   form.id = 'form'
@@ -176,7 +176,7 @@ function renderBookingForm(date) {
   h4.innerText = 'Submit booking for this day';
   form.appendChild(h4);
   addFormElement(form, 'form-date', 'hidden', 'date', date);
-  addFormElement(form, 'user-id', 'hidden', 'user-id', 2);
+  addFormElement(form, 'user-id', 'hidden', 'user-id', id);
   addFormElement(form, 'start-time', 'time', 'start-time', '');
   addFormElement(form, 'end-time', 'time', 'end-time', '');
   var submit = document.createElement('button');
@@ -192,7 +192,7 @@ function renderBookingForm(date) {
     var id = document.getElementById('user-id').value;
     var startTime = document.getElementById('start-time').value;
     var endTime = document.getElementById('end-time').value;
-    if (validateForm(name, contact, startTime, endTime)) {
+    if (validateForm(startTime, endTime)) {
       var querystring = 'date=' + date + '&user-id=' + id + '&start-time=' + startTime + '&end-time=' + endTime;
       makeBooking(querystring, function () {
         getBookings(date + 'T10:00:00.000Z', date + 'T18:00:00.000Z');
@@ -269,7 +269,7 @@ function renderRegistrationForm() {
     if (validateRegistration(email, firstName, lastName, contact, password, password2)) {
       var querystring = 'email=' + email + '&first-name=' + firstName + '&last-name=' + lastName + '&contact=' + contact + '&password=' + password;
       register(querystring, function (err, data) {
-        if (err)  {
+        if (err) {
           console.log(err)
         }
         else {
@@ -345,19 +345,19 @@ function renderAvailability() {
     removeChildren('date-buttons');
     var count = 0;
     parsedData.days.forEach(function (day) {
+      var thisDate = day.start_time.split('T')[0];
       if (count == 0) {
         getBookings(day.start_time, day.end_time);
         if (parsedData.logged_in === true) {
-          renderBookingForm(thisDate);
+          renderBookingForm(thisDate, parsedData.user_id);
         }
         count++;
       }
       var button = document.createElement('button');
-      var thisDate = day.start_time.split('T')[0];
       button.addEventListener('click', function () {
         getBookings(day.start_time, day.end_time);
         if (parsedData.logged_in === true) {
-          renderBookingForm(thisDate);
+          renderBookingForm(thisDate, parsedData.user_id);
         }
       })
       button.innerText = day.start_time.split('T')[0].split('-')[2];
