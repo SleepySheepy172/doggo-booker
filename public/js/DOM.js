@@ -1,13 +1,13 @@
 /* eslint-disable */
 
 // until logging in works, use variable to change views
-const logged_in = false;
+var logged_in = true;
 
-const availableDates = document.getElementById('date-buttons');
-const dateButtons = document.getElementsByTagName('button');
-const inputForm = document.getElementsByTagName('form');
-const bookingsTable = document.getElementById('bookings-table');
-const bookingForm = document.getElementById('booking-form');
+var availableDates = document.getElementById('date-buttons');
+var dateButtons = document.getElementsByTagName('button');
+var inputForm = document.getElementsByTagName('form');
+var bookingsTable = document.getElementById('bookings-table');
+var bookingForm = document.getElementById('booking-form');
 
 // GET request function
 function request(url, cb) {
@@ -94,7 +94,7 @@ function getBookings(start, end) {
       bookingsTable.appendChild(row);
       bookings.forEach(function (booking) {
         var row = document.createElement('tr');
-        addTD(row, booking.name);
+        addTD(row, booking.first_name);
         //addTD(row, booking.contact);
         addTD(row, booking.start_time);
         addTD(row, booking.end_time);
@@ -268,9 +268,13 @@ function renderRegistrationForm() {
     var password2 = document.getElementById('password-2').value;
     if (validateRegistration(email, firstName, lastName, contact, password, password2)) {
       var querystring = 'email=' + email + '&first-name=' + firstName + '&last-name=' + lastName + '&contact=' + contact + '&password=' + password;
-      register(querystring, function () {
-        console.log('registered');
-        // what should we do now?
+      register(querystring, function (err, data) {
+        if (err)  {
+          console.log(err)
+        }
+        else {
+          renderAvailability();
+        }
       });
     }
   });
@@ -303,9 +307,12 @@ function renderLoginForm() {
     var password = document.getElementById('login-password').value;
     if (validateLogin(email, password)) {
       var data = 'email=' + email + '&password=' + password;
-      login(data, function () {
-        console.log('logged in');
-        // need to decide what to do once logged-in successfully - reload page now user has cookie?
+      login(data, function (err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          renderAvailability();
+        }
       });
     }
   });
@@ -328,17 +335,18 @@ function renderLogin() {
 // if user is logged in, as well as the days available.
 
 window.addEventListener("load", function (e) {
-  console.log('I have loaded')
-  // grab data here
-  // get-availability also needs to return whether user is logged in
+  renderAvailability();
+});
+
+function renderAvailability() {
   request('/get-availability', function (err, data) {
     if (err) return console.log('error retrieving data');
     removeChildren('date-buttons');
     var count = 0;
-    JSON.parse(data).forEach(function (day) {
+    JSON.parse(data.days).forEach(function (day) {
       if (count == 0) {
         getBookings(day.start_time, day.end_time);
-        if (logged_in === true) {
+        if (data.logged_in === true) {
           renderBookingForm(thisDate);
         }
         count++;
@@ -347,20 +355,20 @@ window.addEventListener("load", function (e) {
       var thisDate = day.start_time.split('T')[0];
       button.addEventListener('click', function () {
         getBookings(day.start_time, day.end_time);
-        if (logged_in === true) {
+        if (data.logged_in === true) {
           renderBookingForm(thisDate);
         }
       })
       button.innerText = day.start_time.split('T')[0].split('-')[2];
       availableDates.appendChild(button);
     })
-    if (!logged_in) {
+    if (data.logged_in === false) {
       renderLogin();
     }
   })
-});
+}
 
-/* TABBED INTERFACE MAGIC */
+/* TABBED INTERFACE MAGIC - DEVELOPED FROM https://inclusive-components.design/tabbed-interfaces/ */
 
 function tabify() {
   // Get relevant elements and collections
@@ -370,7 +378,7 @@ function tabify() {
   var panels = tabbed.querySelectorAll('.tab-section');
 
   // The tab switching function
-  const switchTab = function (oldTab, newTab) {
+  var switchTab = function (oldTab, newTab) {
     newTab.focus();
     // Make the active tab focusable by the user (Tab key)
     newTab.removeAttribute('tabindex');
