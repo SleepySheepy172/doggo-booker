@@ -42,13 +42,37 @@ const servePublicFile = (res, filename) => {
 };
 
 const getAvailabilityRoute = (req, res) => {
+  if (req.headers.cookie && req.headers.cookie.includes('status')) {
+    const cookies = cookie.parse(req.headers.cookie);
+    jwt.verify(cookies.status, key, (err, decoded) => {
+      console.log(decoded);
+      getAvailability((err, data) => {
+        if (err) {
+          res.writeHead(500, { 'content-type': 'text/plain' });
+          res.end('Error with request');
+        } else {
+          const returnObj = {
+            user_id: decoded.user_id,
+            logged_in: decoded.logged_in,
+            days: data,
+          }
+          res.writeHead(200, { 'content-type': 'application/json' });
+          return res.end(JSON.stringify(returnObj));
+        }
+      })
+    })
+  }
   getAvailability((err, data) => {
     if (err) {
       res.writeHead(500, { 'content-type': 'text/plain' });
       res.end('Error with request');
     } else {
+      const resultObj = {
+        logged_in: false,
+        days: data,
+      }
       res.writeHead(200, { 'content-type': 'application/json' });
-      res.end(JSON.stringify(data));
+      res.end(JSON.stringify(resultObj));
     }
   })
 };
@@ -140,12 +164,13 @@ const makeBooking = (req, res) => {
     data += chunk;
   })
   req.on('end', () => {
-    console.log(data);
+    // console.log(data);
     const formData = querystring.parse(data);
+    console.log(formData);
     const startTime = formData.date + 'T' + formData['start-time'];
     const endTime = formData.date + 'T' + formData['end-time'];
     if (data) {
-      createBooking(formData.name, formData.contact, startTime, endTime, true, (err, data) => {
+      createBooking(formData['user-id'], startTime, endTime, true, (err, data) => {
         if (err) {
           console.log('error', err);
           res.writeHead(500, { 'Content-Type': 'text/plain' });
