@@ -40,7 +40,7 @@ function requestPost(url, querystring, cb) {
   XHR.send(querystring);
 }
 
-// use POST function to access different 
+// use POST function to access different
 function makeBooking(querystring, cb) {
   requestPost('/make-booking', querystring, cb);
 }
@@ -316,6 +316,11 @@ function renderLoginForm() {
       });
     }
   });
+}
+
+function validateLogin(email, password) {
+  // add validation
+  return true;
 }
 
 function renderLogin() {
