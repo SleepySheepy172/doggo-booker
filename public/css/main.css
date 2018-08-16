@@ -3,106 +3,156 @@
 }
 
 body {
-  height: 100vh;
-  background-color: #F2E9E4;
-  color: #331F1F;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-h1 {
-  font-size: 56px;
-  font-weight: 600;
-  margin: 45px;
-}
-
-h2 {
-  font-size: 35px;
-  margin-bottom: 45px;
+  background: #e5eff0;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 30px 30px 0 30px;
-  height: 100%;
+  padding: 16px;
 }
 
-section {
-  display: flex;
-  justify-content: center;
-  width: 70vw;
+/* HEADING AND DATE BUTTONS */
+
+#logo-image {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto 8px auto;
+  border-radius: 50px;
 }
 
-#available-dates {
+#date-buttons,
+#date-labels {
   display: flex;
-  justify-content: space-around;
-}
-
-#available-dates > button {
-  border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
-  font-family: 'Josefin Sans', sans-serif;
-  color: #C9ADA7;
-  background-color: #915434;
-  font-size: 35px;
-  display: flex;
-  justify-content: center;
-  border: none;
-}
-
-#bookings {
-  margin: 50px;
-}
-
-#bookings-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70vw;
-}
-
-#bookings-list > li {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 60vw;
-}
-
-#bookings-list > li > ul {
-  display: flex;
+  width: 100%;
+  margin: 0 auto 0 auto;
   justify-content: space-between;
-  flex-direction: row;
-  width: 60vw;
 }
 
-#bookings-list > li > ul > li {
-  width: 25%;
+#date-labels > h4 {
+  padding: 8px;
+  font-size: 1.414rem;
   text-align: center;
-  padding: 1rem 0 0.5rem;
-  font-size: 22px;
+  width: 40px;
 }
 
-
-
-input {
-  padding:0.5rem;
-  font-size: 1rem;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-#submit {
-  padding: 1rem;
-  font-family: 'Josefin Sans', sans-serif;
-  color: #331F1F;
-  background-color: #C9ADA7;
-  border-radius: 50%;
-  font-size: 20px;
+#date-buttons > button {
+  background: #18a29d;
   border: none;
-  margin-left: 2rem;
+  color: #e5eff0;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.414rem;
 }
 
-#name, #contact{
-  padding: 0.7rem;
+#date-buttons > button:hover,
+#date-buttons > button:focus {
+  background: #5f2b02;
+  outline: none;
 }
+
+/* TABLE OF BOOKINGS */
+
+#bookings-table {
+  width: calc(100vw - 32px);
+  background: #5f2b02;
+  text-align: center;
+  margin: 16px auto 0 auto;
+  border-radius: 4px;
+}
+
+#bookings-table > tr > td {
+  background: #daa174;
+  padding: 4px;
+}
+
+#bookings-table > tr > th {
+  color: #e5eff0;
+  padding: 4px;
+}
+
+/* REGISTRATION FORM */
+
+#booking-form {
+  margin-top: 32px;
+}
+
+#booking-form form {
+  width: calc(100vw - 32px);
+  background: #5f2b02;
+  /* margin-top: 32px; */
+  border-radius: 4px;
+  color: #e5eff0;
+  padding: 32px;
+  padding-top: 16px;
+  border: none;
+  outline: none;
+}
+
+#booking-form form > label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+#booking-form form > label > input {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 4px;
+  border: none;
+  padding: 4px;
+}
+
+#booking-form form > label > input:focus {
+  outline: none;
+  background: #18a29d;
+  color: #e5eff0; 
+  border: none;
+}
+
+#booking-form form > button {
+  font-size: 1rem;
+  background: #18a29d;
+  color: #e5eff0; 
+  padding: 8px;
+  border: none;
+  display: block;
+  margin: 16px auto 0 auto;
+  border-radius: 4px;
+}
+
+/* additional magic for the tabbed section */
+
+section[hidden] {
+  display: none;
+}
+
+[role="tablist"] {
+  padding: 0;
+}
+
+[role="tablist"] li, [role="tablist"] a {
+  display: inline-block;
+  width: 7em;
+}
+
+[role="tablist"] a {
+  text-decoration: none;
+  padding: 0.5rem 1em;
+  color: #e5eff0;
+}
+
+[role="tablist"] li {
+  margin-right: 8px;
+  background: #daa174;
+  border: none;
+}
+
+[role="tablist"] [aria-selected] {
+  border: 2px solid #18a29d;
+  border-bottom: none;
+  background: #5f2b02;
+  outline: none;
+  position: relative;
+}
+  

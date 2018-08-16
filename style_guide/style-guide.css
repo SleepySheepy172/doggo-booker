@@ -1,0 +1,247 @@
+/* CSS RESET */
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* LOAD FONTS */
+
+/* remove unneccessary fonts later! */
+
+@font-face {
+  font-family: Peenu;
+  src: url(Peenu.otf);
+}
+
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Thin 100.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Extra-Light 200.ttf');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Light 300.ttf');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Normal 400.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Medium 500.ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Semi-Bold 600.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Bold 700.ttf');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Extra-Bold 800.ttf');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: Mosk;
+  src: url('Mosk Ultra-Bold 900.ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+
+body {
+  margin: 16px;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.container > div {
+  margin-right: 2rem;
+}
+.colour-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 0 8px 0 8px;
+}
+.colour1 {
+  background: #180b00;
+  color: white;
+  font-size: 2rem;
+}
+.colour2 {
+  background: #5f2b02;
+  color: white;
+  font-size: 2rem;
+}
+.colour3 {
+  background: #daa174;
+  font-size: 2rem;
+  color: black;
+}
+.colour4 {
+  background: #18a29d;
+  font-size: 2rem;
+  color: black;
+}
+.colour5 {
+  background-color: #e5eff0;
+  border: 1px solid black;
+  font-size: 2rem;
+  color: black;
+}
+.spacing-xs {
+  border: 1px solid black;
+  width: 4px;
+  height: 4px;
+  margin: 4px;
+  display: inline-block;
+}
+.spacing-s {
+  border: 1px solid black;
+  width: 8px;
+  height: 8px;
+  margin: 8px;
+  display: inline-block;
+}
+.spacing-m {
+  border: 1px solid black;
+  width: 16px;
+  height: 16px;
+  margin: 16px;
+  display: inline-block;
+}
+
+.spacing-l {
+  border: 1px solid black;
+  width: 32px;
+  height: 32px;
+  margin: 32px;
+  display: inline-block;
+}
+
+.spacing-xl {
+  border: 1px solid black;
+  width: 64px;
+  height: 64px;
+  margin: 64px;
+  display: inline-block;
+}
+
+html {font-size: 1em;}
+
+body {
+  background-color: #e5eff0;
+  font-family: 'Mosk', serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #180b00;
+}
+
+p {
+  line-height: 1.2em;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Peenu';
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3.998rem;
+}
+
+h2 {
+  font-size: 2.827rem;
+}
+
+h3 {font-size: 1.999rem;}
+
+h4 {
+  font-size: 1.414rem;
+  font-family: 'Mosk';
+  font-weight: 700;
+}
+
+small, .font_small {font-size: 0.707rem;}
+
+body {
+  font-family: 'Mosk';
+  font-weight: 400;
+  font-size: 1rem;
+}
+section{
+  background-color: #5f2b02;
+  color: #e5eff0;
+}
+
+.border {
+  border: 1x solid black;
+}

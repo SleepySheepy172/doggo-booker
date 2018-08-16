@@ -19,6 +19,8 @@ const servePublicFile = (res, filename) => {
       '.gif': 'image/gif',
       '.png': 'image/png',
       '.svg': 'image/svg+xml',
+      '.ttf': 'application/x-font-truetype',
+      '.otf': 'application/x-font-opentype'
     };
     // if there is an error reading the file...
     if (err) {
@@ -74,10 +76,10 @@ const makeBooking = (req, res) => {
           console.log('error', err);
           res.writeHead(500, { 'Content-Type': 'text/plain'});
           return res.end('Error updating database');
-        } else {
+        } 
           res.writeHead(302, { 'Content-Type': 'location', 'Location': '/'});
           return res.end('Success');
-        }
+        
       })
     } else {
       res.writeHead(200, { 'Content-Type': 'text/plain'});
