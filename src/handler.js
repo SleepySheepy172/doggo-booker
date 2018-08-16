@@ -4,6 +4,8 @@ const querystring = require('querystring');
 const getAvailability = require('./queries/getAvailability');
 const getBookings = require('./queries/getBookings');
 const createBooking = require('./queries/createBooking');
+const register = require('./queries/register');
+
 
 const servePublicFile = (res, filename) => {
   fs.readFile(path.join(__dirname, '..', 'public', filename), (err, file) => {
@@ -51,15 +53,39 @@ const getBookingsRoute = (req, res) => {
   const parsedQuery = querystring.parse(query);
   getBookings(parsedQuery.start, parsedQuery.end, (err, data) => {
     if (err) {
-      res.writeHead(500, {'content-type': 'text/plain'});
+      res.writeHead(500, { 'content-type': 'text/plain' });
       res.end('Error with request');
     } else {
-      res.writeHead(200, {'content-type': 'application/json'});
+      res.writeHead(200, { 'content-type': 'application/json' });
       res.end(JSON.stringify(data));
     }
   })
 }
 
+const registerRoute = (req, res) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data += chunk;
+  })
+  req.on('end', () => {
+    const parsedData = querystring.parse(data);
+    console.log(parsedData);
+    if (data) {
+      register(parsedData.email, parsedData['first-name'], parsedData['last-name'], parsedData.contact, parsedData.password, (err, data) => {
+        if (err) {
+          console.log('error', err);
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          return res.end('Error updating database with register');
+        }
+        res.writeHead(302, { 'Content-Type': 'location', 'Location': '/' });
+        return res.end('Success registering');
+      })
+    } else {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      return res.end();
+    }
+  })
+}
 const makeBooking = (req, res) => {
   let data = '';
   req.on('data', (chunk) => {
@@ -74,21 +100,19 @@ const makeBooking = (req, res) => {
       createBooking(formData.name, formData.contact, startTime, endTime, true, (err, data) => {
         if (err) {
           console.log('error', err);
-          res.writeHead(500, { 'Content-Type': 'text/plain'});
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
           return res.end('Error updating database');
-        } 
-          res.writeHead(302, { 'Content-Type': 'location', 'Location': '/'});
-          return res.end('Success');
-        
+        }
+        res.writeHead(302, { 'Content-Type': 'location', 'Location': '/' });
+        return res.end('Success');
       })
     } else {
-      res.writeHead(200, { 'Content-Type': 'text/plain'});
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
       return res.end();
     }
   })
-
 }
 
 
 
-module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute };
+module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute };
