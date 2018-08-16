@@ -341,12 +341,13 @@ window.addEventListener("load", function (e) {
 function renderAvailability() {
   request('/get-availability', function (err, data) {
     if (err) return console.log('error retrieving data');
+    var parsedData = JSON.parse(data);
     removeChildren('date-buttons');
     var count = 0;
-    JSON.parse(data.days).forEach(function (day) {
+    parsedData.days.forEach(function (day) {
       if (count == 0) {
         getBookings(day.start_time, day.end_time);
-        if (data.logged_in === true) {
+        if (parsedData.logged_in === true) {
           renderBookingForm(thisDate);
         }
         count++;
@@ -355,14 +356,14 @@ function renderAvailability() {
       var thisDate = day.start_time.split('T')[0];
       button.addEventListener('click', function () {
         getBookings(day.start_time, day.end_time);
-        if (data.logged_in === true) {
+        if (parsedData.logged_in === true) {
           renderBookingForm(thisDate);
         }
       })
       button.innerText = day.start_time.split('T')[0].split('-')[2];
       availableDates.appendChild(button);
     })
-    if (data.logged_in === false) {
+    if (parsedData.logged_in === false) {
       renderLogin();
     }
   })
