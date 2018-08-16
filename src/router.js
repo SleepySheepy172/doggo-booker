@@ -1,4 +1,4 @@
-const { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute } = require('./handler');
+const { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute, loginRoute } = require('./handler');
 const path = require('path');
 
 const router = (req, res) => {
@@ -19,6 +19,9 @@ const router = (req, res) => {
     makeBooking(req, res);
   } else if (req.url === '/register') {
     registerRoute(req, res);
+  } else if (req.url === '/login') {
+    console.log('you got redirected')
+    loginRoute(req, res);
   }
   else {
     servePublicFile(res, req.url);
