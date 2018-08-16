@@ -20,23 +20,32 @@ main {
   border-radius: 50px;
 }
 
-#available-dates {
+#date-buttons,
+#date-labels {
   display: flex;
   width: 100%;
   margin: 0 auto 0 auto;
   justify-content: space-between;
 }
 
-#available-dates > button {
+#date-labels > h4 {
+  padding: 8px;
+  font-size: 1.414rem;
+  text-align: center;
+  width: 40px;
+}
+
+#date-buttons > button {
   background: #18a29d;
   border: none;
   color: #e5eff0;
-  padding: 16px;
+  padding: 8px;
   border-radius: 50%;
+  font-size: 1.414rem;
 }
 
-#available-dates > button:hover,
-#available-dates > button:focus {
+#date-buttons > button:hover,
+#date-buttons > button:focus {
   background: #5f2b02;
   outline: none;
 }
@@ -63,42 +72,45 @@ main {
 
 /* REGISTRATION FORM */
 
-#booking-form > form {
+#booking-form {
+  margin-top: 32px;
+}
+
+#booking-form form {
   width: calc(100vw - 32px);
   background: #5f2b02;
-  margin-top: 32px;
+  /* margin-top: 32px; */
   border-radius: 4px;
   color: #e5eff0;
-  padding-bottom: 16px;
-}
-
-#booking-form > form > h4 {
+  padding: 32px;
   padding-top: 16px;
-  margin-bottom: 16px;
+  border: none;
+  outline: none;
 }
 
-#booking-form > form > label {
+#booking-form form > label {
   display: block;
   font-size: 1rem;
-  margin: 0 16px 0 16px;
+  margin-bottom: 8px;
 }
 
-#booking-form > form > label > input {
+#booking-form form > label > input {
   display: block;
   width: 100%;
   font-size: 1rem;
   margin-top: 4px;
   border: none;
+  padding: 4px;
 }
 
-#booking-form > form > label > input:focus {
+#booking-form form > label > input:focus {
   outline: none;
   background: #18a29d;
   color: #e5eff0; 
   border: none;
 }
 
-#booking-form > form > button {
+#booking-form form > button {
   font-size: 1rem;
   background: #18a29d;
   color: #e5eff0; 
@@ -108,3 +120,39 @@ main {
   margin: 16px auto 0 auto;
   border-radius: 4px;
 }
+
+/* additional magic for the tabbed section */
+
+section[hidden] {
+  display: none;
+}
+
+[role="tablist"] {
+  padding: 0;
+}
+
+[role="tablist"] li, [role="tablist"] a {
+  display: inline-block;
+  width: 7em;
+}
+
+[role="tablist"] a {
+  text-decoration: none;
+  padding: 0.5rem 1em;
+  color: #e5eff0;
+}
+
+[role="tablist"] li {
+  margin-right: 8px;
+  background: #daa174;
+  border: none;
+}
+
+[role="tablist"] [aria-selected] {
+  border: 2px solid #18a29d;
+  border-bottom: none;
+  background: #5f2b02;
+  outline: none;
+  position: relative;
+}
+  
