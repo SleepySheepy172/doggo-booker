@@ -1,4 +1,4 @@
-const { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute, loginRoute } = require('./handler');
+const { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute, loginRoute, logoutRoute } = require('./handler');
 const path = require('path');
 
 const router = (req, res) => {
@@ -21,6 +21,8 @@ const router = (req, res) => {
     registerRoute(req, res);
   } else if (req.url === '/login') {
     loginRoute(req, res);
+  } else if (req.url === '/logout') {
+    logoutRoute(req, res);
   }
   else {
     servePublicFile(res, req.url);
