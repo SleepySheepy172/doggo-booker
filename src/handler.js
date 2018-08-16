@@ -158,6 +158,11 @@ const loginRoute = (req, res) => {
   })
 }
 
+const logoutRoute = (req, res) => {
+  res.writeHead(302, { 'location': '/', 'Set-Cookie': 'status=""; Max-Age=0' });
+  res.end();
+}
+
 const makeBooking = (req, res) => {
   let data = '';
   req.on('data', (chunk) => {
@@ -188,4 +193,4 @@ const makeBooking = (req, res) => {
 
 
 
-module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute, loginRoute };
+module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute, loginRoute, logoutRoute };
