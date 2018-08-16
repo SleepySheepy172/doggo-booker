@@ -18,6 +18,8 @@ CREATE TABLE users (
   last_name VARCHAR(20) NOT NULL,
   -- add in the contact number
   contact VARCHAR(13) NOT NULL,
+  -- add in an unique email
+  email TEXT UNIQUE NOT NULL,
   -- add in the hashed password
   password TEXT NOT NULL
 );
@@ -37,13 +39,13 @@ CREATE TABLE bookings (
 );
 
 -- insert data into users table
-INSERT INTO users (first_name, last_name, contact, password) VALUES
-('Emma', 'Ogden', '07483928644', '$2a10hmsqmbvAqIt5QBM0.EQ7h.PnMOQ4c6yqGCB.o.AhQWfzjbLvp0JJS'),
-('Artemis', 'Gause', '07346596378','$2a10l0N1sP9AaKlPMJ/bmyGlv.cVmDsX6G8SFhgZKMMQNTyaoOXQDiK6W'),
-('Nathalie', 'Jonsson', '07930287364', '$2a10JbC92brXsw1xDd1/0sagSeX24lCya1zEcQDaNRRAFrSlzaT5perci'),
-('Martin', 'Gaston', '07483928644', '$2a10T/tDyqlYxFFdvMED3TdI5OZMzgkM/EqDnM/1XT6xOrvh43NYe9DWC'),
-('Jessie', 'Beech', '07378498256', '$2a10Vv7TxCaAcekqFtbhkUmOVeYqmWnmv9YRXg3FQYWvWNDIK3BZ/ywKu'),
-('Joe', 'Friel', '07930287364', '$2a$10$23FTtfJQbJwwoKc5bQ01eegGng9K2MCSqU9o4NKd5mpdJkk04gpLy');
+INSERT INTO users (first_name, last_name, contact, email, password) VALUES
+('Emma', 'Ogden', '07483928644', 'emma@ogden.com', '$2a10hmsqmbvAqIt5QBM0.EQ7h.PnMOQ4c6yqGCB.o.AhQWfzjbLvp0JJS'),
+('Artemis', 'Gause', '07346596378', 'artemis@gause.com','$2a10l0N1sP9AaKlPMJ/bmyGlv.cVmDsX6G8SFhgZKMMQNTyaoOXQDiK6W'),
+('Nathalie', 'Jonsson', '07930287364', 'nathalie@jonsson.com', '$2a10JbC92brXsw1xDd1/0sagSeX24lCya1zEcQDaNRRAFrSlzaT5perci'),
+('Martin', 'Gaston', '07483928644', 'martin@gaston.com','$2a10T/tDyqlYxFFdvMED3TdI5OZMzgkM/EqDnM/1XT6xOrvh43NYe9DWC'),
+('Jessie', 'Beech', '07378498256', 'jessie@beech.com','$2a10Vv7TxCaAcekqFtbhkUmOVeYqmWnmv9YRXg3FQYWvWNDIK3BZ/ywKu'),
+('Joe', 'Friel', '07930287364', 'joe@friel.com', '$2a$10$23FTtfJQbJwwoKc5bQ01eegGng9K2MCSqU9o4NKd5mpdJkk04gpLy');
 
 -- insert into bookings (Michael's set available date)
 INSERT INTO bookings (user_id, start_time, end_time, booking) VALUES
