@@ -12,7 +12,7 @@ const bookingForm = document.getElementById('booking-form');
 // GET request function
 function request(url, cb) {
   var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       cb(null, xhr.responseText);
     } else if (xhr.readyState === 4 && xhr.status !== 200) {
@@ -27,11 +27,11 @@ function request(url, cb) {
 function requestPost(url, querystring, cb) {
   var XHR = new XMLHttpRequest();
   // Define what happens on successful data submission
-  XHR.addEventListener('load', function(event) {
+  XHR.addEventListener('load', function (event) {
     cb();
   });
   // Define what happens in case of error
-  XHR.addEventListener('error', function(event) {
+  XHR.addEventListener('error', function (event) {
     console.log('Oops! Something went wrong.');
   });
   // Set up our request
@@ -81,7 +81,7 @@ function addTH(parent, text) {
 // retrieve all bookings for given day
 function getBookings(start, end) {
   url = '/get-bookings?start=' + start + '&end=' + end;
-  request(url, function(err, data){
+  request(url, function (err, data) {
     if (err) return console.log(err);
     removeChildren('bookings-table');
     var bookings = JSON.parse(data);
@@ -92,13 +92,13 @@ function getBookings(start, end) {
       addTH(row, 'Start');
       addTH(row, 'End');
       bookingsTable.appendChild(row);
-    bookings.forEach(function(booking){
-      var row = document.createElement('tr');
-      addTD(row, booking.name);
-      //addTD(row, booking.contact);
-      addTD(row, booking.start_time);
-      addTD(row, booking.end_time);
-      bookingsTable.appendChild(row);
+      bookings.forEach(function (booking) {
+        var row = document.createElement('tr');
+        addTD(row, booking.name);
+        //addTD(row, booking.contact);
+        addTD(row, booking.start_time);
+        addTD(row, booking.end_time);
+        bookingsTable.appendChild(row);
       });
     } else {
       var row = document.createElement('tr');
@@ -185,7 +185,7 @@ function renderBookingForm(date) {
   submit.id = 'submit';
   submit.innerText = 'Submit';
   form.appendChild(submit);
-  form.addEventListener('submit', function(event){
+  form.addEventListener('submit', function (event) {
     /* UPDATE FUNCTION TO MAKE BOOKING */
     event.preventDefault();
     var date = document.getElementById('form-date').value;
@@ -194,10 +194,10 @@ function renderBookingForm(date) {
     var endTime = document.getElementById('end-time').value;
     if (validateForm(name, contact, startTime, endTime)) {
       var querystring = 'date=' + date + '&user-id=' + id + '&start-time=' + startTime + '&end-time=' + endTime;
-      makeBooking(querystring, function(){
+      makeBooking(querystring, function () {
         getBookings(date + 'T10:00:00.000Z', date + 'T18:00:00.000Z');
       });
-      renderBookingForm(date);    
+      renderBookingForm(date);
     }
   });
 }
@@ -225,7 +225,7 @@ function createTabs() {
   a2.href = '#register';
   li2.appendChild(a2);
   ul.appendChild(li2);
-  
+
   // create login tab
   var login = document.createElement('section');
   login.id = "login";
@@ -258,20 +258,20 @@ function renderRegistrationForm() {
   submit.name = 'submit';
   submit.innerText = 'Submit';
   form.appendChild(submit);
-  form.addEventListener('submit', function(event){
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
     var email = document.getElementById('email').value;
     var firstName = document.getElementById('first-name').value;
     var lastName = document.getElementById('last-name').value;
-    var contact = document.getElementById('contact').value;
-    var password = document.getElementById('password-1').value;
+    var contact = document.getElementById('phone').value;
+    var password = document.getElementById('password').value;
     var password2 = document.getElementById('password-2').value;
     if (validateRegistration(email, firstName, lastName, contact, password, password2)) {
-      var querystring = 'email=' + email +'first-name=' + firstName + 'last-name=' + lastName + '&contact=' + contact + '&password=' + password;
-      register(querystring, function(){
-       console.log('registered');
-       // what should we do now?
-      });  
+      var querystring = 'email=' + email + '&first-name=' + firstName + '&last-name=' + lastName + '&contact=' + contact + '&password=' + password;
+      register(querystring, function () {
+        console.log('registered');
+        // what should we do now?
+      });
     }
   });
 }
@@ -297,16 +297,16 @@ function renderLoginForm() {
   submit.id = 'submit';
   submit.innerText = 'Submit';
   form.appendChild(submit);
-  form.addEventListener('submit', function(event){
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
     var email = document.getElementById('login-email').value;
     var password = document.getElementById('login-password').value;
     if (validateLogin(email, password)) {
       var data = 'email=' + email + '&password=' + password;
-      login(data, function(){
+      login(data, function () {
         console.log('logged in');
         // need to decide what to do once logged-in successfully - reload page now user has cookie?
-      });  
+      });
     }
   });
 }
@@ -326,11 +326,11 @@ window.addEventListener("load", function (e) {
   console.log('I have loaded')
   // grab data here
   // get-availability also needs to return whether user is logged in
-  request('/get-availability', function(err, data){
+  request('/get-availability', function (err, data) {
     if (err) return console.log('error retrieving data');
     removeChildren('date-buttons');
     var count = 0;
-    JSON.parse(data).forEach(function(day){
+    JSON.parse(data).forEach(function (day) {
       if (count == 0) {
         getBookings(day.start_time, day.end_time);
         if (logged_in === true) {
@@ -340,7 +340,7 @@ window.addEventListener("load", function (e) {
       }
       var button = document.createElement('button');
       var thisDate = day.start_time.split('T')[0];
-      button.addEventListener('click', function(){
+      button.addEventListener('click', function () {
         getBookings(day.start_time, day.end_time);
         if (logged_in === true) {
           renderBookingForm(thisDate);
@@ -363,9 +363,9 @@ function tabify() {
   var tablist = tabbed.querySelector('ul');
   var tabs = tablist.querySelectorAll('a');
   var panels = tabbed.querySelectorAll('.tab-section');
-  
+
   // The tab switching function
-  const switchTab = function(oldTab, newTab) {
+  const switchTab = function (oldTab, newTab) {
     newTab.focus();
     // Make the active tab focusable by the user (Tab key)
     newTab.removeAttribute('tabindex');
@@ -380,28 +380,28 @@ function tabify() {
     panels[oldIndex].hidden = true;
     panels[index].hidden = false;
   }
-  
+
   // Add the tablist role to the first <ul> in the .tabbed container
   tablist.setAttribute('role', 'tablist');
-  
+
   // Add semantics are remove user focusability for each tab
-  Array.prototype.forEach.call(tabs, function(tab, i) {
+  Array.prototype.forEach.call(tabs, function (tab, i) {
     tab.setAttribute('role', 'tab');
     tab.setAttribute('id', 'tab' + (i + 1));
     tab.setAttribute('tabindex', '-1');
     tab.parentNode.setAttribute('role', 'presentation');
-    
+
     // Handle clicking of tabs for mouse users
-    tab.addEventListener('click', function(e) {
+    tab.addEventListener('click', function (e) {
       e.preventDefault();
       let currentTab = tablist.querySelector('[aria-selected]');
       if (e.currentTarget !== currentTab) {
         switchTab(currentTab, e.currentTarget);
       }
     });
-    
+
     // Handle keydown events for keyboard users
-    tab.addEventListener('keydown', function(e) {
+    tab.addEventListener('keydown', function (e) {
       // Get the index of the current tab in the tabs node list
       let index = Array.prototype.indexOf.call(tabs, e.currentTarget);
       // Work out which key the user is pressing and
@@ -415,16 +415,16 @@ function tabify() {
       }
     });
   });
-  
+
   // Add tab panel semantics and hide them all
   Array.prototype.forEach.call(panels, (panel, i) => {
     panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('tabindex', '-1');
     let id = panel.getAttribute('id');
     panel.setAttribute('aria-labelledby', tabs[i].id);
-    panel.hidden = true; 
+    panel.hidden = true;
   });
-  
+
   // Initially activate the first tab and reveal the first tab panel
   tabs[0].removeAttribute('tabindex');
   tabs[0].setAttribute('aria-selected', 'true');

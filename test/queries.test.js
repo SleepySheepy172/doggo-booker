@@ -8,7 +8,8 @@ const getAvailability = require('../src/queries/getAvailability');
 const createBooking = require('../src/queries/createBooking');
 
 //build test database
-dbBuild((err, res)=>{
+dbBuild((err, res) => {
+  console.log(res);
   tape('test db built for queries tests', (t) => {
     t.equals(err, null, 'no error building db');
     t.end();
