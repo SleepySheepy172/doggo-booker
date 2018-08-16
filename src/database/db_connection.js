@@ -18,7 +18,7 @@ const options = {
   host: params.hostname,
   port: params.port,
   database: params.pathname.split('/')[1],
-  max: process.env.DB_URL_CONNECTIONS || 2,
+  max: process.env.DB_URL_CONNECTIONS || 8,
   user: username,
   // when key and value is the same just put it once
   password,

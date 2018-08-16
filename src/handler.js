@@ -46,7 +46,7 @@ const getAvailabilityRoute = (req, res) => {
       res.end(JSON.stringify(data));
     }
   })
-}
+};
 
 const getBookingsRoute = (req, res) => {
   const query = req.url.split('?')[1];
