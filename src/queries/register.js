@@ -10,7 +10,6 @@ const register = (email, firstName, lastName, contact, password, cb) => {
         cb(null, data);
       })
   })
-
 }
 
 module.exports = register;

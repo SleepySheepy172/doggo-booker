@@ -5,6 +5,7 @@ const getAvailability = require('./queries/getAvailability');
 const getBookings = require('./queries/getBookings');
 const createBooking = require('./queries/createBooking');
 const register = require('./queries/register');
+const verifyLogin = require('./queries/login');
 
 
 const servePublicFile = (res, filename) => {
@@ -92,6 +93,34 @@ const registerRoute = (req, res) => {
     }
   })
 }
+
+const loginRoute = (req, res) => {
+  let data = '';
+  req.on('data', (chunk) => {
+    data += chunk;
+  })
+  req.on('end', () => {
+    // console.log('this is data from loginRoute:', data);
+    const parsedData = querystring.parse(data);
+    // console.log('this is the parsed login data:', parsedData);
+    if (data) {
+      verifyLogin(parsedData.email, parsedData.password, (err, data) => {
+        if (err) {
+          console.log('error', err);
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          return res.end('Error updating database');
+        }
+        // MAKE COOKIE !!!
+        res.writeHead(302, { 'Content-Type': 'location', 'Location': '/' });
+        return res.end('Success');
+      })
+    } else {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      return res.end();
+    }
+  })
+}
+
 const makeBooking = (req, res) => {
   let data = '';
   req.on('data', (chunk) => {
@@ -121,4 +150,4 @@ const makeBooking = (req, res) => {
 
 
 
-module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute };
+module.exports = { servePublicFile, makeBooking, getAvailabilityRoute, getBookingsRoute, registerRoute, loginRoute};
