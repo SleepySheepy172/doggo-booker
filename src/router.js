@@ -20,7 +20,6 @@ const router = (req, res) => {
   } else if (req.url === '/register') {
     registerRoute(req, res);
   } else if (req.url === '/login') {
-    console.log('you got redirected')
     loginRoute(req, res);
   }
   else {
