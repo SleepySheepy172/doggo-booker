@@ -55,7 +55,13 @@ const getBookingsRoute = (req, res) => {
       res.end('Error with request');
     } else {
       res.writeHead(200, {'content-type': 'application/json'});
-      res.end(JSON.stringify(data));
+      try {
+        const JSONData = JSON.stringify(data);
+        res.end(JSONData)
+      }
+      catch(err) {
+        res.end("[]");
+      }
     }
   })
 }
