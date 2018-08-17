@@ -9,6 +9,7 @@ const getBookings = require('./queries/getBookings');
 const createBooking = require('./queries/createBooking');
 const register = require('./queries/register');
 const verifyLogin = require('./queries/login');
+const getUserName = require('./queries/getUserName');
 
 const key = 'jaffa-cakes';
 
@@ -51,13 +52,18 @@ const getAvailabilityRoute = (req, res) => {
           res.writeHead(500, { 'content-type': 'text/plain' });
           res.end('Error with request');
         } else {
-          const returnObj = {
-            user_id: decoded.user_id,
-            logged_in: decoded.logged_in,
-            days: data,
-          }
-          res.writeHead(200, { 'content-type': 'application/json' });
-          return res.end(JSON.stringify(returnObj));
+          getUserName(decoded.user_id, (err, name) => {
+            if (err) console.log(err);
+            console.log('hi ', name);
+            const returnObj = {
+              username: name,
+              user_id: decoded.user_id,
+              logged_in: decoded.logged_in,
+              days: data,
+            }
+            res.writeHead(200, { 'content-type': 'application/json' });
+            return res.end(JSON.stringify(returnObj));
+          })
         }
       })
     })

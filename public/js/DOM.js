@@ -339,6 +339,7 @@ window.addEventListener("load", function (e) {
 });
 
 function renderAvailability() {
+  var username = document.querySelector('#username');
   request('/get-availability', function (err, data) {
     if (err) return console.log('error retrieving data');
     var parsedData = JSON.parse(data);
@@ -350,6 +351,7 @@ function renderAvailability() {
         getBookings(day.start_time, day.end_time);
         if (parsedData.logged_in === true) {
           renderBookingForm(thisDate, parsedData.user_id);
+          username.innerText = 'Welcome ' + parsedData.username;
         }
         count++;
       }
@@ -358,6 +360,7 @@ function renderAvailability() {
         getBookings(day.start_time, day.end_time);
         if (parsedData.logged_in === true) {
           renderBookingForm(thisDate, parsedData.user_id);
+          username.innerText = 'Welcome ' + parsedData.username;
         }
       })
       var dbDate = new Date(day.start_time);
@@ -383,6 +386,7 @@ function renderAvailability() {
     if (parsedData.logged_in === false) {
       // not logged in
       renderLogin();
+      username.innerText = '';
     }
   })
 }
