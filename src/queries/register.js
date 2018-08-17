@@ -1,5 +1,5 @@
 const dbConnection = require('../database/db_connection');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const register = (email, firstName, lastName, contact, password, cb) => {
   bcrypt.hash(password, 10, (err, hashPassword) => {
