@@ -10,6 +10,42 @@ main {
   padding: 16px;
 }
 
+/*LOGOUT LINK*/
+
+a {
+text-decoration: none;
+outline: none;
+padding: 8px;
+border-radius: 4px;
+}
+
+a:link {
+background: #18a29d;
+color: #e5eff0;
+}
+
+a:visited {
+  background: #18a29d;
+  color: #e5eff0;
+}
+
+a:focus {
+  background: #18a29d;
+  color: #e5eff0;
+}
+
+a:hover {
+background: #daa174;
+color: #180b00;
+cursor: url('img/paw-cursor.png'), auto;
+}
+
+a:active {
+  background: #180b00;
+  color: #daa174;
+
+}
+
 /* HEADING AND DATE BUTTONS */
 
 #logo-image {
