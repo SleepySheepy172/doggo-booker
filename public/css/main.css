@@ -46,6 +46,13 @@ a:active {
 
 }
 
+/* username wlecome */
+
+#username{
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
 /* HEADING AND DATE BUTTONS */
 
 #logo-image {
