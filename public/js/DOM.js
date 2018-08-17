@@ -351,6 +351,8 @@ function renderAvailability() {
         getBookings(day.start_time, day.end_time);
         if (parsedData.logged_in === true) {
           renderBookingForm(thisDate, parsedData.user_id);
+          var logoutlink = document.getElementsByTagName('a'); 
+          logoutlink[0].style.visibility = "visible";
           username.innerText = 'Welcome ' + parsedData.username;
         }
         count++;
@@ -384,6 +386,8 @@ function renderAvailability() {
       availableDates.appendChild(button);
     })
     if (parsedData.logged_in === false) {
+      var logoutlink = document.getElementsByTagName('a'); 
+      logoutlink[0].style.visibility = "hidden";
       // not logged in
       renderLogin();
       username.innerText = '';
