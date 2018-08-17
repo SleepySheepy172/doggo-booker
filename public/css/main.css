@@ -10,6 +10,10 @@ main {
   padding: 16px;
 }
 
+#date-buttons {
+  max-width: 600px;
+}
+
 /*LOGOUT LINK*/
 
 a {
@@ -35,15 +39,13 @@ a:focus {
 }
 
 a:hover {
-background: #daa174;
-color: #180b00;
-cursor: url('img/paw-cursor.png'), auto;
+  background: #daa174;
+  color: #180b00;
 }
 
 a:active {
   background: #180b00;
   color: #daa174;
-
 }
 
 /* HEADING AND DATE BUTTONS */
@@ -64,12 +66,12 @@ a:active {
   justify-content: space-between;
 }
 
-#date-labels > h4 {
+/* #date-labels > h4 {
   padding: 8px;
   font-size: 1.414rem;
   text-align: center;
   width: 40px;
-}
+} */
 
 #date-buttons > button {
   background: #18a29d;
@@ -77,7 +79,17 @@ a:active {
   color: #e5eff0;
   padding: 8px;
   border-radius: 50%;
-  font-size: 1.414rem;
+  font-size: 1rem;
+  width: 6rem;
+  text-transform: uppercase;
+}
+
+.date-num {
+  font-size: 2rem;
+}
+
+.day {
+  font-size: 1rem;
 }
 
 #date-buttons > button:hover,
@@ -90,6 +102,7 @@ a:active {
 
 #bookings-table {
   width: calc(100vw - 32px);
+  max-width: 600px;
   background: #5f2b02;
   text-align: center;
   margin: 16px auto 0 auto;
@@ -114,12 +127,14 @@ a:active {
 
 #booking-form form {
   width: calc(100vw - 32px);
+  max-width: 600px;
   background: #5f2b02;
   /* margin-top: 32px; */
   border-radius: 4px;
   color: #e5eff0;
   padding: 32px;
   padding-top: 16px;
+  margin: 0 auto;
   border: none;
   outline: none;
 }
@@ -142,14 +157,14 @@ a:active {
 #booking-form form > label > input:focus {
   outline: none;
   background: #18a29d;
-  color: #e5eff0; 
+  color: #e5eff0;
   border: none;
 }
 
 #booking-form form > button {
   font-size: 1rem;
   background: #18a29d;
-  color: #e5eff0; 
+  color: #e5eff0;
   padding: 8px;
   border: none;
   display: block;
@@ -165,6 +180,8 @@ section[hidden] {
 
 [role="tablist"] {
   padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 [role="tablist"] li, [role="tablist"] a {
@@ -191,4 +208,3 @@ section[hidden] {
   outline: none;
   position: relative;
 }
-  

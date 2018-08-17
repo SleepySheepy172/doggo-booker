@@ -360,10 +360,28 @@ function renderAvailability() {
           renderBookingForm(thisDate, parsedData.user_id);
         }
       })
-      button.innerText = day.start_time.split('T')[0].split('-')[2];
+      var dbDate = new Date(day.start_time);
+      var day = dbDate.getDay()-1;
+      var month = dbDate.getMonth();
+      var date = dbDate.getDate();
+
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+      var monthDiv = document.createElement('div');
+      monthDiv.classList.add('month');
+      monthDiv.innerText = monthNames[month];
+      var dateDiv = document.createElement('div');
+      dateDiv.classList.add('date-num');
+      dateDiv.innerText = date;
+      var dayDiv = document.createElement('div');
+      dayDiv.classList.add('day');
+      dayDiv.innerText = dayNames[day];
+      button.appendChild(monthDiv).appendChild(dateDiv).appendChild(dayDiv);
       availableDates.appendChild(button);
     })
     if (parsedData.logged_in === false) {
+      // not logged in
       renderLogin();
     }
   })
