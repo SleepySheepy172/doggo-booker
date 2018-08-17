@@ -370,10 +370,13 @@ function renderAvailability() {
       var dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
       var monthDiv = document.createElement('div');
+      monthDiv.classList.add('month');
       monthDiv.innerText = monthNames[month];
       var dateDiv = document.createElement('div');
+      dateDiv.classList.add('date-num');
       dateDiv.innerText = date;
       var dayDiv = document.createElement('div');
+      dayDiv.classList.add('day');
       dayDiv.innerText = dayNames[day];
       button.appendChild(monthDiv).appendChild(dateDiv).appendChild(dayDiv);
       availableDates.appendChild(button);

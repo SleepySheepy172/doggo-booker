@@ -66,12 +66,12 @@ a:active {
   justify-content: space-between;
 }
 
-#date-labels > h4 {
+/* #date-labels > h4 {
   padding: 8px;
   font-size: 1.414rem;
   text-align: center;
   width: 40px;
-}
+} */
 
 #date-buttons > button {
   background: #18a29d;
@@ -79,7 +79,17 @@ a:active {
   color: #e5eff0;
   padding: 8px;
   border-radius: 50%;
-  font-size: 1.414rem;
+  font-size: 1rem;
+  width: 6rem;
+  text-transform: uppercase;
+}
+
+.date-num {
+  font-size: 2rem;
+}
+
+.day {
+  font-size: 1rem;
 }
 
 #date-buttons > button:hover,
