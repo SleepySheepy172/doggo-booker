@@ -357,7 +357,7 @@ function renderAvailability() {
       }
       var button = document.createElement('button');
       button.addEventListener('click', function () {
-        getBookings(day.start_time, day.end_time);
+        getBookings(thisDate + 'T11:00', thisDate + 'T19:00');
         if (parsedData.logged_in === true) {
           renderBookingForm(thisDate, parsedData.user_id);
           username.innerText = 'Welcome ' + parsedData.username;
