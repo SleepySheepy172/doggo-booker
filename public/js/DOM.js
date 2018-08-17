@@ -362,7 +362,6 @@ function renderAvailability() {
       })
       var dbDate = new Date(day.start_time);
       var day = dbDate.getDay()-1;
-      console.log(day);
       var month = dbDate.getMonth();
       var date = dbDate.getDate();
 
@@ -382,6 +381,7 @@ function renderAvailability() {
       availableDates.appendChild(button);
     })
     if (parsedData.logged_in === false) {
+      // not logged in
       renderLogin();
     }
   })
