@@ -1,5 +1,5 @@
 const dbConnection = require('../database/db_connection');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const verifyLogin = (email, password, cb) => {
   // ask db for hashed password (to match with the input) and email (to use unique info)
