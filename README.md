@@ -18,6 +18,10 @@ Heroku: https://mackerel-time.herokuapp.com/ (it does work! 🤞🏼)
 ENVIRONMENT = TEST
 USERS_DB_URL = postgres://USER:PASSWORD@localhost:5432/DATABASE_NAME
 ```
-* `node src/database/db_build.js` to build DB tables (and populate with dummy data).
+* `npm test` to see the tests, build DB tables and populate with dummy data.
 * `npm start` to launch the server
 * Go to http://localhost:3000 to see the magic happen
+
+**N.B. You do need to run the tests first in order to create the database schema. The project won't work without this step. Yes, we know this isn't necessarily the ideal method.**
+
+Enjoy!
